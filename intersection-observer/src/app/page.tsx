@@ -2,24 +2,12 @@
 import Image from "next/image";
 import ShowImage from "./_components/ShowImage";
 import { useEffect, useRef, useState } from "react";
+import useInterObserverHook from "@/hooks/useIntersectionObserver";
 
 export default function Home() {
-  const observerRef = useRef(null)
-  const [componentVisibility, setComponentVisibility] = useState(false)
+  const observerRef = useRef<HTMLDivElement>(null)
+  const { componentVisibility } = useInterObserverHook(observerRef)
 
-  console.log('is visibilty', componentVisibility)
-  useEffect(() => {
-    let observer = new IntersectionObserver((entries) => {
-      const entry = entries[0]
-      setComponentVisibility(entry.isIntersecting)
-      console.log('entry', entry)
-    }, {})
-    observer.observe(observerRef.current)
-  }, [])
-
-  function verifyVisibility(e: any) {
-    console.log(e)
-  }
   return (
     <main className="bg-[#282c34]">
       <div className="h-screen flex justify-center items-center">
@@ -28,8 +16,8 @@ export default function Home() {
       <div>
         <ShowImage />
       </div>
-      <div ref={observerRef} className="h-screen">
-        Info
+      <div ref={observerRef} className={`h-screen transition-all duration-[1.5s] flex justify-center items-center  ${componentVisibility ? "translate-x-[0px]" : "translate-x-[-100%] "}`}>
+        <p className="w-full text-center">Info</p>
       </div>
     </main>
   );
