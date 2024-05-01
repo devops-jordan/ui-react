@@ -5,3 +5,6 @@
 - [ ] Native Dark-Mode using Context-Provider
   - [x] @media (prefers-color-scheme: dark) {} -> works with the system ui
   - [x] Default behaiviour using **Tailwindcss** -> Working with a provider `ThemeProvider.tsx`
+
+### ADvance
+- Implementen Dark mode using `tailwindcss` and `nexthTheme`
