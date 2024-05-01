@@ -4,4 +4,4 @@
 - [ ] [Nexth-Theme](https://github.com/pacocoursey/next-themes)
 - [ ] Native Dark-Mode using Context-Provider
   - [x] @media (prefers-color-scheme: dark) {} -> works with the system ui
-  - [ ] Default behaiviour using **Tailwindcss**
+  - [x] Default behaiviour using **Tailwindcss** -> Working with a provider `ThemeProvider.tsx`
