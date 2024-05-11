@@ -5,7 +5,13 @@ const getAllTodos = async () => {
 
   // setTimeout(() => {
   // }, 2000)
-  return prisma.todo.findMany({})
+  try {
+    return prisma.todo.findMany({})
+
+  } catch (error) {
+    console.log('error ', error)
+    return false
+  }
 }
 
 
@@ -25,4 +31,4 @@ const deleteByid = async ({ id }: { id: string }) => {
   }
 }
 
-export { getAllTodos, createTodo,deleteByid }
+export { getAllTodos, createTodo, deleteByid }
