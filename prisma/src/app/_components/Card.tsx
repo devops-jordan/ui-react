@@ -11,21 +11,14 @@ export interface CardUI {
 
 const Card = ({ id, name, date }: CardUI) => {
   const { active, openModal, closeModal } = useModalHook()
-  const activateModal = () => {
-    openModal()
-  }
-  const desactivateModal = () => {
-    closeModal()
-  }
-
   const deleteCard = async (id: string) => {
     deleteByid({id})
   }
   return (
     <section
       className={`bg-[#454c5a] shadow-md rounded-md p-2 text-[13px] transition-all duration-150 hover:scale-[1.02] relative flex justify-between items-center`}
-      onMouseEnter={activateModal}
-      onMouseLeave={desactivateModal}>
+      onMouseEnter={()=>openModal()}
+      onMouseLeave={()=>closeModal()}>
       <section
         className={` ${active ? 'opacity-60' : ''}`}
       >

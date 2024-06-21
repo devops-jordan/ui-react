@@ -5,6 +5,9 @@ import Main from './Main'
 
 const Todos = async () => {
   const todos = await getAllTodos()
+
+  
+
   if (!todos) {
     return <p>Renderizando </p>
   }

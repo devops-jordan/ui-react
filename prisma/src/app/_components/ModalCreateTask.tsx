@@ -2,13 +2,14 @@
 import { createTodo } from '@/actions/todos'
 import React, { FormEvent, useState } from 'react'
 
-const ModalCreateTask = ({ active }: { active: boolean }) => {
+const ModalCreateTask = ({ active, closeModal }: { active: boolean, closeModal: () => void }) => {
   const [name, setName] = useState('')
 
   const submitForm = async (e: FormEvent) => {
     e.preventDefault()
     e.stopPropagation()
     await createTodo({ name })
+    closeModal()
   }
 
   return (
