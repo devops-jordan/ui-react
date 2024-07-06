@@ -1,5 +1,5 @@
 "use server"
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/lib/db"
 
 const getAllTodos = async () => {
 
@@ -12,7 +12,7 @@ const getAllTodos = async () => {
     console.log('error ', error)
     return false
   }
-}
+}   
 
 
 const createTodo = async ({ name }: { name: string }) => {
