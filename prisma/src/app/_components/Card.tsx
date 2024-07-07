@@ -2,6 +2,7 @@
 import { deleteByid } from '@/actions/todos'
 import useModalHook from '@/hooks/useModalStatus'
 import React from 'react'
+import ContainerComponent from './ContainerComponent'
 
 export interface CardUI {
   id: string
@@ -15,7 +16,7 @@ const Card = ({ id, name, date }: CardUI) => {
     deleteByid({id})
   }
   return (
-    <section
+    <ContainerComponent name='Card'
       className={`bg-[#454c5a] shadow-md rounded-md p-2 text-[13px] transition-all duration-150 hover:scale-[1.02] relative flex justify-between items-center`}
       onMouseEnter={()=>openModal()}
       onMouseLeave={()=>closeModal()}>
@@ -44,7 +45,7 @@ const Card = ({ id, name, date }: CardUI) => {
           </button>
         </div>
       </section>
-    </section>
+    </ContainerComponent>
   )
 }
 

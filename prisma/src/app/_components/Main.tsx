@@ -11,7 +11,7 @@ const Main = () => {
     <div className='relative'>
       <h1 hidden={active} className='transition-all duration-150'>Noting There {active.toString()}</h1>
       <CreateButton openModal={openModal} active={active} />
-      <ModalCreateTask active={!active} closeModal={closeModal} />
+      <ModalCreateTask active={!active} closeModal={closeModal}/>
     </div>
   )
 }

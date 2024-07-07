@@ -2,6 +2,7 @@ import { getAllTodos } from '@/actions/todos'
 import React from 'react'
 import Card from './Card'
 import Main from './Main'
+import ContainerComponent from './ContainerComponent'
 
 const Todos = async () => {
   const todos = await getAllTodos()
@@ -9,7 +10,7 @@ const Todos = async () => {
     return <p>Renderizando </p>
   }
   return (
-    <div>
+    <ContainerComponent name='Todos'>
       {todos.length === 0 ? (
         <Main />
       ) : (
@@ -19,7 +20,7 @@ const Todos = async () => {
           ))}
         </div>
       )}
-    </div>
+    </ContainerComponent>
   )
 }
 

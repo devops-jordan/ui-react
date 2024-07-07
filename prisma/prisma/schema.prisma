@@ -8,8 +8,9 @@ datasource db {
 }
 
 model todo {
-  id   String   @id @default(auto()) @map("_id") @db.ObjectId
-  slug String?  @unique
-  date DateTime @db.Date
-  name String   @unique
+  id    String   @id @default(auto()) @map("_id") @db.ObjectId
+  title String   @unique 
+  slug  String?  @unique
+  date  DateTime @db.Date
+  name  String   @unique
 }
