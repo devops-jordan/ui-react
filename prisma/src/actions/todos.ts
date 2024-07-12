@@ -1,10 +1,8 @@
 "use server"
-import { prisma } from "@/lib/prisma"
+import { prisma } from "@/lib/db"
+import { revalidatePath } from "next/cache"
 
 const getAllTodos = async () => {
-
-  // setTimeout(() => {
-  // }, 2000)
   try {
     return prisma.todo.findMany({})
 
@@ -15,11 +13,20 @@ const getAllTodos = async () => {
 }
 
 
-const createTodo = async ({ name }: { name: string }) => {
+const createTodo = async (formData: FormData) => {
+  console.log(formData)
   try {
-    await prisma.todo.create({ data: { name } })
+    await prisma.todo.create({
+      data: {
+        title: 'sdsd',
+        name: formData.get('name') as string,
+        slug: (formData.get('date') as string).replace(/\s+/g, '-').toLowerCase(),
+        date: new Date()
+      }
+    })
+    revalidatePath('/')
   } catch (error) {
-    console.log('Somwthing wrong')
+    console.log('Somwthing wrong', error)
   }
 }
 
