@@ -1,0 +1,27 @@
+html,body{
+  padding: 0;
+}
+body{
+  min-height: 100vh;
+  background-color: #282c34;
+}
+.main{
+  height: 100vh;
+}
+.main2{
+  height: 100vh;
+  background-color: skyblue;
+}
+.main3{
+  height: 100vh;
+  background-color: #282c34;
+}
+
+.main4{
+  height: 100vh;
+  background-color: bisque;
+}
+.main5{
+  height: 100vh;
+  background-color: aqua;
+}
