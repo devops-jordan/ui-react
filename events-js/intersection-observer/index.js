@@ -1,32 +1,36 @@
 const options = {
-  // root: document.getElementById('inter'),
+  // root: document.getElementById('body'),
   rootMargin: "0px",
   threshold: 0.5
 }
 const trigger = (entries, observer) => {
   entries.forEach(element => {
+    console.log(element.time)
+
     if (element.isIntersecting) {
       if (element.target.id === "inter") {
         element.target.classList.add('loaded')
       }
       if (element.target.id === "inter2") {
-        console.log('inter2')
         element.target.classList.add('fade-in')
-
       }
       if (element.target.id === "inter3") {
         element.target.classList.add('animated')
-
-      }
-      if (element.target.id === "inter4") {
-        console.log('qeqweqw4')
-      }
-      if (element.target.id === "inter5") {
-        console.log('qeqweqw5')
       }
 
       //TODO: restart for everyone
       // observer.unobserve(element.target)
+    } else {
+      if (element.target.id === "inter") {
+        element.target.classList.remove('loaded')
+      }
+      if (element.target.id === "inter2") {
+        element.target.classList.remove('fade-in')
+      }
+      if (element.target.id === "inter3") {
+        element.target.classList.remove('animated')
+      }
+
     }
   });
 }
