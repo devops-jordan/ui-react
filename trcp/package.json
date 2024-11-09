@@ -1,5 +1,5 @@
 {
-  "name": "dark-mode",
+  "name": "trcp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,15 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "dark-mode": "file:",
-    "next": "14.2.3",
-=======
-    "next": "14.2.3",
-    "next-themes": "^0.3.0",
->>>>>>> 1a33e7a288dea6b9571d2b07d4d73663f76de82a
+    "@tanstack/react-query": "^5.45.1",
+    "@trpc/client": "^11.0.0-rc.421",
+    "@trpc/next": "^11.0.0-rc.421",
+    "@trpc/react-query": "^11.0.0-rc.421",
+    "@trpc/server": "^11.0.0-rc.421",
+    "next": "14.2.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20",

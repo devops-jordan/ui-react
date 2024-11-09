@@ -1,5 +1,5 @@
 {
-  "name": "dark-mode",
+  "name": "context-api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,22 +9,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "dark-mode": "file:",
-    "next": "14.2.3",
-=======
-    "next": "14.2.3",
-    "next-themes": "^0.3.0",
->>>>>>> 1a33e7a288dea6b9571d2b07d4d73663f76de82a
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "next": "14.2.4"
   },
   "devDependencies": {
+    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "tailwindcss": "^3.4.1"
   }
 }
