@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from '../contat';
 
 export interface ContactUI {
   first: string;
@@ -10,16 +11,13 @@ export interface ContactUI {
   favorite: boolean;
   id?: string;
 }
+export async function loader({ params }: { params: any }) {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
 
 const Contact = () => {
-  const contact: ContactUI = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://robohash.org/you.png?size=200x200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+  const contact = useLoaderData();
   return (
     <div id="contact">
       <div>

@@ -2,19 +2,24 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import RootLayout from './routes/root'
 import ErrorPage from './error-page'
-import Contact from './routes/contact'
+
+import Contact, {loader as contactLoader} from './routes/contact'
+import RootLayout, { loader as rootLoader, action as rootAction } from './routes/root'
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
     errorElement: <ErrorPage />,
-    children:[
+    loader: rootLoader,
+    action: rootAction,
+    children: [
       {
         path: "contacts/:contactId",
-        element: <Contact />
+        element: <Contact />,
+        loader:contactLoader
       }
     ]
   }
