@@ -1,0 +1,14 @@
+html,body{
+  padding: 0;
+}
+body{
+  min-height: 100vh;
+  background-color: #282c34;
+}
+.main{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+}

@@ -9,8 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "dark-mode": "file:",
+    "next": "14.2.3",
+=======
     "next": "14.2.3",
     "next-themes": "^0.3.0",
+>>>>>>> 1a33e7a288dea6b9571d2b07d4d73663f76de82a
     "react": "^18",
     "react-dom": "^18"
   },
