@@ -11,13 +11,16 @@ export interface ContactUI {
   favorite: boolean;
   id?: string;
 }
+
+//? Al igual que el root layout, aqui accedemos a la base de datos para traernos solo un contacto
 export async function loader({ params }: { params: any }) {
   const contact = await getContact(params.contactId);
   return { contact };
 }
 
 const Contact = () => {
-  const contact = useLoaderData();
+  const { contact } = useLoaderData();
+  console.log(contact)
   return (
     <div id="contact">
       <div>
@@ -29,7 +32,7 @@ const Contact = () => {
           }
         />
       </div>
-
+      <p >{contact.id}</p>
       <div>
         <h1>
           {contact.first || contact.last ? (

@@ -1,12 +1,14 @@
 import React from 'react'
 import { Form, Link, Outlet, useLoaderData } from 'react-router-dom'
-import { getContacts,createContact } from '../contat';
+import { getContacts, createContact } from '../contat';
 
+//?: Here we can call ower API , i think
 export async function loader() {
   const contacts = await getContacts();
   return { contacts };
 }
 
+//?: Similinar happens here, we can create a post and export this action in ower router
 export async function action() {
   const contact = await createContact();
   return { contact };
@@ -45,7 +47,7 @@ const RootLayout = () => {
         <nav>
           {contacts.length ? (
             <ul>
-              {contacts.map((contact:any) => (
+              {contacts.map((contact: any) => (
                 <li key={contact.id}>
                   <Link to={`contacts/${contact.id}`}>
                     {contact.first || contact.last ? (
