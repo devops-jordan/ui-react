@@ -1,6 +1,17 @@
 import React from 'react'
-import { Form, useLoaderData } from "react-router-dom";
-import { getContact } from '../contat';
+import { Form, useFetcher, useLoaderData } from "react-router-dom";
+import { getContact, updateContact } from "../contat";
+
+export async function action({ request, params }: { request: any, params: any }) {
+  const formData = await request.formData();
+  return updateContact(params.contactId, {
+    favorite: formData.get("favorite") === "true",
+  });
+}
+
+export async function actionNative() {
+  return "testing"
+}
 
 export interface ContactUI {
   first: string;
@@ -15,6 +26,12 @@ export interface ContactUI {
 //? Al igual que el root layout, aqui accedemos a la base de datos para traernos solo un contacto
 export async function loader({ params }: { params: any }) {
   const contact = await getContact(params.contactId);
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
   return { contact };
 }
 
@@ -82,10 +99,16 @@ const Contact = () => {
   );
 }
 
+
+
 function Favorite({ contact }: { contact: any }) {
-  const favorite = contact.favorite;
+  const fetcher = useFetcher();
+  const favorite = fetcher.formData
+  ? fetcher.formData.get("favorite") === "true"
+  : contact.favorite;
+
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
@@ -97,7 +120,7 @@ function Favorite({ contact }: { contact: any }) {
       >
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
 

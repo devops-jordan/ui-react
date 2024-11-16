@@ -1,11 +1,13 @@
-import React from 'react'
-import { Form, Link, NavLink, Outlet, redirect, useLoaderData, useNavigation } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Form, Link, NavLink, Outlet, redirect, useLoaderData, useNavigation, useSubmit } from 'react-router-dom'
 import { getContacts, createContact } from '../contat';
 
 //?: Here we can call ower API , i think
-export async function loader() {
-  const contacts = await getContacts();
-  return { contacts };
+export async function loader({ request }: { request: any }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const contacts = await getContacts(q as string | undefined);
+  return { contacts, q };
 }
 
 //?: Similinar happens here, we can create a post and export this action in ower router
@@ -17,20 +19,38 @@ export async function action() {
 
 const RootLayout = () => {
 
-  const { contacts } = useLoaderData();
+  const { contacts, q } = useLoaderData();
   const navigation = useNavigation();
+  const submit = useSubmit();
+  useEffect(() => {
+    document.getElementById("q").value = q;
+  }, [q]);
+
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has(
+      "q"
+    );
+
   return (
+
     <>
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
-          <form id="search-form" role="search">
+          <Form id="search-form" role="search">
             <input
               id="q"
               aria-label="Search contacts"
+              className={searching ? "loading" : ""}
               placeholder="Search"
               type="search"
               name="q"
+              defaultValue={q}
+              onChange={(event) => {
+                const isFirstSearch = q == null;
+                submit(event.currentTarget.form,{replace:!isFirstSearch})
+              }}
             />
             <div
               id="search-spinner"
@@ -41,7 +61,7 @@ const RootLayout = () => {
               className="sr-only"
               aria-live="polite"
             ></div>
-          </form>
+          </Form>
           <Form method='post'>
             <button type='submit'>New</button>
           </Form>

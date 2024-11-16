@@ -29,7 +29,7 @@ export async function getContact(id: string | undefined) {
   return contact ?? null;
 }
 
-export async function updateContact(id: string | undefined, updates: string | undefined) {
+export async function updateContact(id: string | undefined, updates: any) {
   await fakeNetwork();
   let contacts: any = await localforage.getItem("contacts");
   let contact = contacts.find((contact: any) => contact.id === id);
