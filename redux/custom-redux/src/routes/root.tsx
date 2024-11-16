@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Link, Outlet, useLoaderData } from 'react-router-dom'
+import { Form, Link, NavLink, Outlet, redirect, useLoaderData, useNavigation } from 'react-router-dom'
 import { getContacts, createContact } from '../contat';
 
 //?: Here we can call ower API , i think
@@ -11,12 +11,14 @@ export async function loader() {
 //?: Similinar happens here, we can create a post and export this action in ower router
 export async function action() {
   const contact = await createContact();
-  return { contact };
+  // return { contact };
+  return redirect(`/contacts/${contact.id}/edit`)
 }
 
 const RootLayout = () => {
 
   const { contacts } = useLoaderData();
+  const navigation = useNavigation();
   return (
     <>
       <div id="sidebar">
@@ -49,7 +51,16 @@ const RootLayout = () => {
             <ul>
               {contacts.map((contact: any) => (
                 <li key={contact.id}>
-                  <Link to={`contacts/${contact.id}`}>
+                  <NavLink
+                    to={`contacts/${contact.id}`}
+                    className={({ isActive, isPending }) =>
+                      isActive
+                        ? "active"
+                        : isPending
+                          ? "pending"
+                          : ""
+                    }
+                  >
                     {contact.first || contact.last ? (
                       <>
                         {contact.first} {contact.last}
@@ -58,7 +69,7 @@ const RootLayout = () => {
                       <i>No Name</i>
                     )}{" "}
                     {contact.favorite && <span>★</span>}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -69,7 +80,10 @@ const RootLayout = () => {
           )}
         </nav>
       </div>
-      <div id="detail">
+      <div
+        id="detail"
+        className={navigation.state === "loading" ? "loading" : ""}
+      >
         <Outlet />
       </div>
     </>

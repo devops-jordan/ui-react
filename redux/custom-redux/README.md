@@ -8,3 +8,4 @@
 - Por defecto el Form de react-router-rom usa el action
 - Otra cosa importante es que **actions** funciona con el **<Form/>**, y depende del nombre de la accion, ese se lanzara, si no se especifica una accion en la ruta, este lo reenviara a la pagina que se especifica. Si estamos en /contact nos enviara a **/contact/{name}** siendo: <Form action="name">
 ![actions](image.png)
+- Luego de una accion de formulario, react-router-dom revalidad la nueva data renderizada.

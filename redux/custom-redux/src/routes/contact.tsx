@@ -20,7 +20,6 @@ export async function loader({ params }: { params: any }) {
 
 const Contact = () => {
   const { contact } = useLoaderData();
-  console.log(contact)
   return (
     <div id="contact">
       <div>
